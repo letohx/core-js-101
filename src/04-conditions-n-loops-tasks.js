@@ -288,8 +288,18 @@ const reverseInteger = (num) => num.toString().split('').reverse().join('');
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  const arrCcn = ccn.toString().split('').map(Number)
+    .reverse();
+
+  arrCcn.forEach((item, index) => {
+    if (index % 2 !== 0) {
+      arrCcn[index] = (item * 2 > 9) ? (item * 2 - 9) : (item * 2);
+    }
+  });
+
+  const sum = arrCcn.reduce((acc, curr) => acc + curr, 0);
+  return sum % 10 === 0;
 }
 
 /**
@@ -399,6 +409,22 @@ function toNaryString(/* num, n */) {
  */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
+  // let result = '';
+  // const longestPath = pathes.reduce((acc, current) =>
+  // (current.length > acc.length ? current : acc), '');
+
+  // longestPath.forEach((char) => {
+  //   pathes.forEach((item, index) => {
+  //     if (item === longestPath[index]) {
+  //       result += item;
+  //     }
+  //   });
+  // });
+
+  // const lastIndex = result.lastIndexOf('/');
+  // result = result.substring(0, lastIndex + 1);
+
+  // return result;
 }
 
 
@@ -420,8 +446,22 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const resultMatrix = [];
+
+  m1.forEach((row) => {
+    const resultRow = [];
+    m2[0].forEach((col, indexCol) => {
+      let sum = 0;
+      row.forEach((num, indexRow) => {
+        sum += num * m2[indexRow][indexCol];
+      });
+      resultRow.push(sum);
+    });
+    resultMatrix.push(resultRow);
+  });
+
+  return resultMatrix;
 }
 
 
@@ -457,8 +497,41 @@ function getMatrixProduct(/* m1, m2 */) {
  */
 function evaluateTicTacToePosition(/* position */) {
   throw new Error('Not implemented');
-}
+  //   let winner;
 
+  //   const horizontal1 = position[0];
+  //   const horizontal2 = position[1];
+  //   const horizontal3 = position[2];
+
+  //   const vertical1 = [position[0][0], position[1][0], position[2][0]];
+  //   const vertical2 = [position[0][1], position[1][1], position[2][1]];
+  //   const vertical3 = [position[0][2], position[1][2], position[2][2]];
+
+  //   const diagonal1 = [position[0][0], position[1][1], position[2][2]];
+  //   const diagonal2 = [position[0][2], position[1][1], position[2][0]];
+
+  //   const findWinner = (arr) => {
+  //     for (let i = 1; i < arr.length; i += 1) {
+  //       if (arr[i] !== arr[0]) {
+  //         return undefined;
+  //       }
+  //     }
+  //     return arr[0];
+  // };
+
+  //   winner = winner || findWinner(horizontal1);
+  //   winner = winner || findWinner(horizontal2);
+  //   winner = winner || findWinner(horizontal3);
+
+  //   winner = winner || findWinner(vertical1);
+  //   winner = winner || findWinner(vertical2);
+  //   winner = winner || findWinner(vertical3);
+
+  //   winner = winner || findWinner(diagonal1);
+  //   winner = winner || findWinner(diagonal2);
+
+//   return winner;
+}
 
 module.exports = {
   getFizzBuzz,
