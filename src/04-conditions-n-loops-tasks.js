@@ -409,20 +409,22 @@ function toNaryString(/* num, n */) {
  */
 function getCommonDirectoryPath(/* pathes */) {
   throw new Error('Not implemented');
-  // let result = '';
   // const longestPath = pathes.reduce((acc, current) =>
   // (current.length > acc.length ? current : acc), '');
+  // let result = new Array(longestPath.length);
 
-  // longestPath.forEach((char) => {
-  //   pathes.forEach((item, index) => {
-  //     if (item === longestPath[index]) {
-  //       result += item;
+  // longestPath.split('').forEach((char, IndexChar) => {
+  //   pathes.every((path) => {
+  //     if (path[IndexChar] === longestPath[IndexChar]) {
+  //       result[IndexChar] = path[IndexChar];
+  //     } else {
+  //       result[IndexChar] = '';
   //     }
   //   });
   // });
 
   // const lastIndex = result.lastIndexOf('/');
-  // result = result.substring(0, lastIndex + 1);
+  // result = result.slice(0, lastIndex + 1).join('');
 
   // return result;
 }
@@ -495,42 +497,39 @@ function getMatrixProduct(m1, m2) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
-  //   let winner;
+function evaluateTicTacToePosition(position) {
+  let winner;
 
-  //   const horizontal1 = position[0];
-  //   const horizontal2 = position[1];
-  //   const horizontal3 = position[2];
+  const horizontal1 = position[0];
+  const horizontal2 = position[1];
+  const horizontal3 = position[2];
 
-  //   const vertical1 = [position[0][0], position[1][0], position[2][0]];
-  //   const vertical2 = [position[0][1], position[1][1], position[2][1]];
-  //   const vertical3 = [position[0][2], position[1][2], position[2][2]];
+  const vertical1 = [position[0][0], position[1][0], position[2][0]];
+  const vertical2 = [position[0][1], position[1][1], position[2][1]];
+  const vertical3 = [position[0][2], position[1][2], position[2][2]];
 
-  //   const diagonal1 = [position[0][0], position[1][1], position[2][2]];
-  //   const diagonal2 = [position[0][2], position[1][1], position[2][0]];
+  const diagonal1 = [position[0][0], position[1][1], position[2][2]];
+  const diagonal2 = [position[0][2], position[1][1], position[2][0]];
 
-  //   const findWinner = (arr) => {
-  //     for (let i = 1; i < arr.length; i += 1) {
-  //       if (arr[i] !== arr[0]) {
-  //         return undefined;
-  //       }
-  //     }
-  //     return arr[0];
-  // };
+  const findWinner = (line) => {
+    if (line[0] === line[1] && line[1] === line[2]) {
+      return line[0];
+    }
+    return undefined;
+  };
 
-  //   winner = winner || findWinner(horizontal1);
-  //   winner = winner || findWinner(horizontal2);
-  //   winner = winner || findWinner(horizontal3);
+  winner = winner || findWinner(horizontal1);
+  winner = winner || findWinner(horizontal2);
+  winner = winner || findWinner(horizontal3);
 
-  //   winner = winner || findWinner(vertical1);
-  //   winner = winner || findWinner(vertical2);
-  //   winner = winner || findWinner(vertical3);
+  winner = winner || findWinner(vertical1);
+  winner = winner || findWinner(vertical2);
+  winner = winner || findWinner(vertical3);
 
-  //   winner = winner || findWinner(diagonal1);
-  //   winner = winner || findWinner(diagonal2);
+  winner = winner || findWinner(diagonal1);
+  winner = winner || findWinner(diagonal2);
 
-//   return winner;
+  return winner;
 }
 
 module.exports = {
