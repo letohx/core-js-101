@@ -407,26 +407,25 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
-  // const longestPath = pathes.reduce((acc, current) =>
-  // (current.length > acc.length ? current : acc), '');
-  // let result = new Array(longestPath.length);
+function getCommonDirectoryPath(pathes) {
+  const longestPath = pathes.reduce((longest, current) => (current.length > longest.length ? current : longest), '');
+  let result = new Array(longestPath.length);
 
-  // longestPath.split('').forEach((char, IndexChar) => {
-  //   pathes.every((path) => {
-  //     if (path[IndexChar] === longestPath[IndexChar]) {
-  //       result[IndexChar] = path[IndexChar];
-  //     } else {
-  //       result[IndexChar] = '';
-  //     }
-  //   });
-  // });
+  for (let i = 0; i <= longestPath.length; i += 1) {
+    const currentChar = longestPath[i];
+    if (pathes.every((path) => path[i] === currentChar)) {
+      result.push(currentChar);
+    } else {
+      break;
+    }
+  }
 
-  // const lastIndex = result.lastIndexOf('/');
-  // result = result.slice(0, lastIndex + 1).join('');
+  result = result.join('');
 
-  // return result;
+  const lastIndex = result.lastIndexOf('/');
+  result = result.slice(0, lastIndex + 1);
+
+  return result;
 }
 
 
