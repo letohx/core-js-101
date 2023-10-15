@@ -391,14 +391,15 @@ function isBracketsBalanced(str) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-  const result = [];
+  let result = '';
+  let number = num;
 
-  while (num > 0) {
-    const remainder = num % n;
-    result.push(remainder);
+  while (number > 0) {
+    result = `${(number % n)}${result}`;
+    number = Math.floor(number / n);
   }
 
-  return result.join('');
+  return result;
 }
 
 
